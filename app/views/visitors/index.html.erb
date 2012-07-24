@@ -1,0 +1,45 @@
+<h1>Listing visitors</h1>
+
+<table>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Company</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>Province state</th>
+    <th>Postal zipcode</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Vehicle make</th>
+    <th>Vehicle color</th>
+    <th>License plate</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @visitors.each do |visitor| %>
+  <tr>
+    <td><%= visitor.first_name %></td>
+    <td><%= visitor.last_name %></td>
+    <td><%= visitor.company %></td>
+    <td><%= visitor.address %></td>
+    <td><%= visitor.city %></td>
+    <td><%= visitor.province_state %></td>
+    <td><%= visitor.postal_zipcode %></td>
+    <td><%= visitor.phone %></td>
+    <td><%= visitor.email %></td>
+    <td><%= visitor.vehicle_make %></td>
+    <td><%= visitor.vehicle_color %></td>
+    <td><%= visitor.license_plate %></td>
+    <td><%= link_to 'Show', visitor %></td>
+    <td><%= link_to 'Edit', edit_visitor_path(visitor) %></td>
+    <td><%= link_to 'Destroy', visitor, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Visitor', new_visitor_path %>

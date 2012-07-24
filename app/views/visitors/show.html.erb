@@ -1,0 +1,39 @@
+<% visitor ||= @visitor    %>
+<% qrcode  ||= @qrcode     %>
+<% logo    ||= "/logo.png" %>
+
+<div class="qrcode side" id="qrcode">
+	<table>
+	<% qrcode.modules.each_index do |x| %>
+		<tr>
+		<% qrcode.modules.each_index do |y| -%>
+		  <% if qrcode.dark?(x,y) -%>
+			<td class="black"/>
+		  <% else -%>
+			<td class="white"/>
+		  <% end -%>
+		<% end -%>
+		</tr>
+	<% end %>
+	</table>
+</div>
+
+<div class="side">
+	<%= image_tag logo, :class => 'logo' %>
+	<div class="visitor">
+		<div id="picture">
+			<%# Rails asset helpers don't support data URIs, so no image_tag here %>
+			<div id="crop">
+				<img src="<%= visitor.avatar %>" alt="User Profile Picture">
+			</div>
+			<div id="time"><%= visitor.updated_at.strftime("%l:%H %p, %b %e, %Y") %></div>
+		</div>
+		<div id="info">
+			<div class="name"><%= visitor.first_name %> <%= visitor.last_name %></div>
+			<div class="company"><%= visitor.company %></div>
+			<% unless visitor.signature_capture.blank? %>
+				<img src="<%= visitor.signature_capture %>" />
+			<% end %>
+		</div>
+	</div>
+</div>
